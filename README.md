@@ -10,4 +10,4 @@ If you want to store images on the host use -v option:
 
 **/!\ Warning**
 If you run the image with -P, shortlinks don't work (HTTP port is missing in the link). You have to run it with -p 80:80
-	 docker run --rm -p 80:80 -t philalex/docker-lutim  
+	 `docker run --rm -p 80:80 -t philalex/docker-lutim`
