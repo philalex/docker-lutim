@@ -6,7 +6,8 @@ ENV DEBIAN_PRIORITY critical
 ENV DEBCONF_NOWARNINGS yes
 
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y git perl supervisor carton build-essential perlmagick nginx
+RUN apt-get install -y git perl supervisor cpanminus build-essential perlmagick nginx
+RUN cpanm Carton
 
 # nginx
 ADD nginx_lutim.conf /etc/nginx/sites-available/lutim.conf
