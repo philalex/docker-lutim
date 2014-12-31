@@ -1,4 +1,5 @@
 FROM ubuntu:14.04
+MAINTAINER Philippe ALEXANDRE <alexandre.philippe+github@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 ENV ENV INITRD No
 ENV DEBIAN_PRIORITY critical
