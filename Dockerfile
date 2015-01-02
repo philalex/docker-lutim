@@ -4,6 +4,8 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV ENV INITRD No
 ENV DEBIAN_PRIORITY critical
 ENV DEBCONF_NOWARNINGS yes
+# Don't forget trailing slash. 
+ENV DATABASE_PATH /srv/lutim/
 
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y git perl supervisor cpanminus build-essential perlmagick nginx
@@ -21,6 +23,9 @@ RUN git clone https://git.framasoft.org/luc/lutim.git
 WORKDIR /srv/lutim
 RUN carton install
 ADD lutim.conf /srv/lutim/lutim.conf
+RUN [ -d $DATABASE_PATH ] || mkdir -p $DATABASE_PATH
+# Grrruuuuuuick, Gruuuuuuuuick - waiting for a command line option to change database path
+RUN sed -i "s|file => 'lutim.db'|file => '${DATABASE_PATH}lutim.db'|g" lib/LutimModel.pm
 RUN chown -R www-data.www-data /srv/lutim
 
 # supervivor
